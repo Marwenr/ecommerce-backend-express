@@ -54,15 +54,14 @@ describe.skip("User", () => {
 
   afterEach(async () => {
     await mongoose.disconnect();
-    await mongoose.connection.close();
   });
 
   describe("Register", () => {
     it("get the data of user", async () => {
       const res = await request(app).post("/api/auth/register").send(userInput);
       expect(res.statusCode).toBe(201);
-      expect(res.body.user.role).toEqual("user")
-      expect(res.body.user.name).toEqual(userInput.name)
+      expect(res.body.user.role).toEqual("user");
+      expect(res.body.user.name).toEqual(userInput.name);
     });
 
     it("Email already used 400 Error", async () => {
@@ -98,12 +97,12 @@ describe.skip("User", () => {
     });
     it("return error 401 user not allowed to access route", async () => {
       const { body } = await request(app)
-      .post("/api/auth/register")
-      .send(userInput);
-    const res = await request(app)
-      .post("/api/auth/user/update/" + body.user._id)
-      .send(userUpdated);
-    expect(res.statusCode).toBe(401);
+        .post("/api/auth/register")
+        .send(userInput);
+      const res = await request(app)
+        .post("/api/auth/user/update/" + body.user._id)
+        .send(userUpdated);
+      expect(res.statusCode).toBe(401);
     });
   });
 });

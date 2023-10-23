@@ -1,5 +1,5 @@
 function validateProduct(req, res, next) {
-  const { title, description, image, category, price, purchasePrice } = req.body;
+  const { title, description, image, category, price } = req.body;
 
   if (!title) {
     return res.status(400).json({ message: "Title of product is required." });
