@@ -48,6 +48,7 @@ exports.login = async (req, res, next) => {
 exports.getAllUsers = async (req, res, next) => {
   try {
     const allUsers = await findAllUser();
+    if (!allUsers) return res.status(400).json({ message: "failed to get users" });
     const users = [];
     allUsers.forEach((user) => users.push(user._id));
     return res.status(200).json(users);
@@ -70,7 +71,7 @@ exports.getUser = async (req, res, next) => {
 
 exports.deleteUserById = async (req, res, next) => {
   try {
-    const user = await deleteUser({ _id: req.params.id });
+    const user = await deleteUser(req.params.id);
     if (user.deletedCount === 1)
       return res.status(200).json({ message: "User deleted successfully" });
     if (user.deletedCount === 0)

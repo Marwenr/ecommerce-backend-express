@@ -23,8 +23,8 @@ exports.validatePassword = async ({ email, password }) => {
   return lodash.omit(user.toJSON(), "password");
 };
 
-exports.deleteUser = (data) => {
-  return User.deleteOne(data);
+exports.deleteUser = (id) => {
+  return User.deleteOne({ _id: id });
 };
 
 exports.updateUser = (id, data) => {

@@ -11,7 +11,7 @@ Instruction for cloning, installing dependencies and running the server locally.
 ```
 ## Testing
 Run tests using Jest:
-```properties
+```
 npm test
 ```
 ## Configuration
@@ -32,6 +32,10 @@ src\
  |--utils\          # Utility functions
  |--tests\          # Tests
  |--index.js        # App entry point
+```
+## Api Links
+### Users
+**Get all users :**
 ```
 fetch('http://localhost:"PORT"/api/auth/usres', {
              headers: {Authorization: 'Bearer ' + TokenOfadmin or TokenOfManager}
@@ -86,7 +90,7 @@ fetch('http://localhost:"PORT"/api/auth/login',{
 **Update User :**
 ```
 fetch('http://localhost:"PORT"/api/auth/user/update/'+userId,{
-            method:"POST",
+            method:"PUT",
             headers: {Authorization: 'Bearer ' + TokenOfAdmin or TokenOfManager or 
             TokenOfUser},
             body:JSON.stringify(
@@ -108,7 +112,7 @@ fetch('http://localhost:"PORT"/api/auth/user/update/'+userId,{
 **Change User Password :**
 ```
 fetch('http://localhost:"PORT"/api/auth/user/updatepw/'+userId,{
-            method:"POST",
+            method:"PUT",
             headers: {Authorization: 'Bearer ' + TokenOfAdmin or TokenOfManager or 
             TokenOfUser},
             body:JSON.stringify(
@@ -121,12 +125,105 @@ fetch('http://localhost:"PORT"/api/auth/user/updatepw/'+userId,{
             .then(res=>res.json())
             .then(json=>console.log(json))
 ```
-**Delte User :**
+**Delete User :**
 ```
 fetch('http://localhost:"PORT"/api/auth/user/'+userId,{
             method:"DELETE",
             headers: {Authorization: 'Bearer ' + TokenOfAdmin or TokenOfManager or 
             TokenOfUser},
+        })
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+### Products
+**Get all categories :**
+```
+fetch('http://localhost:"PORT"/api/shop/categories')
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+**Get all products :**
+```
+fetch('http://localhost:"PORT"/api/shop/products')
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+**Get a single product :**
+```
+fetch('http://localhost:"PORT"/api/shop/product/'+productId)
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+**Get products in a specific category :**
+```
+fetch('http://localhost:"PORT"/api/shop/category/'+categoryId)
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+**Add new Category :**
+```
+fetch('http://localhost:"PORT"/api/shop/category/create,{
+            method:"POST",
+            headers: {Authorization: 'Bearer ' + TokenOfAdmin or TokenOfManager},
+            body:JSON.stringify(
+                {
+                    title: "desktop"
+                }
+            )
+        })
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+**Add new product :**
+```
+fetch('http://localhost:"PORT"/api/shop/product/create,{
+            method:"POST",
+            headers: {Authorization: 'Bearer ' + TokenOfAdmin or TokenOfManager},
+            body:JSON.stringify(
+                {
+                    title: 'hp 15',
+                    price: 1333.5,
+                    description: 'lorem ipsum set',
+                    image: 'test',
+                    category: 'desktop'
+                }
+            )
+        })
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+**Update product :**
+```
+fetch('http://localhost:"PORT"/api/shop/product/'+productId,{
+            method:"PUT",
+            headers: {Authorization: 'Bearer ' + TokenOfAdmin or TokenOfManager},
+            body:JSON.stringify(
+                {
+                    title: 'hp 15',
+                    price: 1333.5,
+                    description: 'lorem ipsum set',
+                    image: 'test',
+                    category: 'desktop'
+                }
+            )
+        })
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+**Delete category :**
+```
+fetch('http://localhost:"PORT"/api/shop/category/'+categoryId,{
+            method:"DELETE",
+            headers: {Authorization: 'Bearer ' + TokenOfAdmin or TokenOfManager},
+        })
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+**Delete product :**
+```
+fetch('http://localhost:"PORT"/api/shop/product/'+ProductId,{
+            method:"DELETE",
+            headers: {Authorization: 'Bearer ' + TokenOfAdmin or TokenOfManager},
         })
             .then(res=>res.json())
             .then(json=>console.log(json))
