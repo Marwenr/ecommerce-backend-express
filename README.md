@@ -80,7 +80,7 @@ fetch('http://localhost:"PORT"/api/auth/login',{
             body:JSON.stringify(
                 {
                     email: "john.sa@example.com"
-                    password:'123456'                   
+                    password:'123456'
                 }
             )
         })
@@ -91,7 +91,7 @@ fetch('http://localhost:"PORT"/api/auth/login',{
 ```
 fetch('http://localhost:"PORT"/api/auth/user/update/'+userId,{
             method:"PUT",
-            headers: {Authorization: 'Bearer ' + TokenOfAdmin or TokenOfManager or 
+            headers: {Authorization: 'Bearer ' + TokenOfAdmin or TokenOfManager or
             TokenOfUser},
             body:JSON.stringify(
                 {
@@ -113,7 +113,7 @@ fetch('http://localhost:"PORT"/api/auth/user/update/'+userId,{
 ```
 fetch('http://localhost:"PORT"/api/auth/user/updatepw/'+userId,{
             method:"PUT",
-            headers: {Authorization: 'Bearer ' + TokenOfAdmin or TokenOfManager or 
+            headers: {Authorization: 'Bearer ' + TokenOfAdmin or TokenOfManager or
             TokenOfUser},
             body:JSON.stringify(
                 {
@@ -129,7 +129,7 @@ fetch('http://localhost:"PORT"/api/auth/user/updatepw/'+userId,{
 ```
 fetch('http://localhost:"PORT"/api/auth/user/'+userId,{
             method:"DELETE",
-            headers: {Authorization: 'Bearer ' + TokenOfAdmin or TokenOfManager or 
+            headers: {Authorization: 'Bearer ' + TokenOfAdmin or TokenOfManager or
             TokenOfUser},
         })
             .then(res=>res.json())
@@ -176,7 +176,7 @@ fetch('http://localhost:"PORT"/api/shop/category/create,{
 ```
 **Add new product :**
 ```
-fetch('http://localhost:"PORT"/api/shop/product/create,{
+fetch('http://localhost:"PORT"/api/shop/product/create',{
             method:"POST",
             headers: {Authorization: 'Bearer ' + TokenOfAdmin or TokenOfManager},
             body:JSON.stringify(
@@ -224,6 +224,75 @@ fetch('http://localhost:"PORT"/api/shop/category/'+categoryId,{
 fetch('http://localhost:"PORT"/api/shop/product/'+ProductId,{
             method:"DELETE",
             headers: {Authorization: 'Bearer ' + TokenOfAdmin or TokenOfManager},
+        })
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+### Cart
+**Get carts :**
+```
+fetch('http://localhost:"PORT"/api/cart/all', {
+            headers: {Authorization: 'Bearer ' + TokenOfadmin or TokenOfManager}
+            })
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+**Get cart by id :**
+```
+fetch('http://localhost:"PORT"/api/cart/'+cartId, {
+             headers: {Authorization: 'Bearer ' + TokenOfadmin or TokenOfManager}
+             })
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+**Get cart by date :**
+```
+fetch(`http://localhost:"PORT"/api/cart/?year=${year}&month=${month}&day=${day}`, {
+            headers: {Authorization: 'Bearer ' + TokenOfadmin or TokenOfManager}
+            })
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+**Delete cart :**
+```
+fetch(`http://localhost:"PORT"/api/cart/`+cartId, {
+            method:"DELETE",
+            headers: {Authorization: 'Bearer ' + TokenOfadmin or TokenOfManager}
+            })
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+**Add new cart :**
+```
+fetch('http://localhost:"PORT"/api/cart/create',{
+            method:"POST",
+            headers: {Authorization: 'Bearer ' + TokenOfAdmin or TokenOfManager},
+            body:JSON.stringify(
+                {
+                    userId: '6534248bb42b5e6bf40e0564',
+                    products: [
+                        {productId: "12", quantity:5}
+                    ]
+                }
+            )
+        })
+            .then(res=>res.json())
+            .then(json=>console.log(json))
+```
+**Update cart :**
+```
+fetch('http://localhost:"PORT"/api/cart/'+cartId,{
+            method:"PUT",
+            headers: {Authorization: 'Bearer ' + TokenOfAdmin or TokenOfManager},
+            body:JSON.stringify(
+                {
+                    userId: '6534248bb42b5e6bf40e0564',
+                    products: [
+                        {productId: "12", quantity:8},
+                        {productId: "548", quantity:4},
+                    ]
+                }
+            )
         })
             .then(res=>res.json())
             .then(json=>console.log(json))
