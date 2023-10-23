@@ -4,7 +4,7 @@ This is the backend for our Ecommerce website. It provides RESTful APIs for mana
 ## Getting Started
 Instruction for cloning, installing dependencies and running the server locally.
 ```
-> git clone https://github.com/marwenr/ecommerce-backend-node-express.git <your-folder-name>
+> git clone https://github.com/Marwenr/ecommerce-backend-express.git <your-folder-name>
 > cd <your-folder-name>
 > npm install
 > npm start
